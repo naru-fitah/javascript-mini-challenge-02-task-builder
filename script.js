@@ -76,8 +76,11 @@ console.log(addTasks(inputTasks))
 // 🧪 EXAMPLE INPUT:
 let tasks = [
     { title: "Learn JS", done: false },
-    { title: "Walk the dog", done: false },
-    { title: "Do laundry", done: false }
+    { title: "Walk the dog", done: true },
+    { title: "Do laundry", done: false },
+    { title: "Study", done: true },
+    { title: "Rest", done: false },
+    { title: "Sleep", done: true }
   ];
   
   // 🎯 GOAL CALL:
@@ -126,9 +129,6 @@ let tasks = [
 // 3. Finds the matching task
 // 4. Removes it from the array using .splice()
 // 5. Returns the updated task list
-
-// -----------------------------------------------------------
-
   
   // 🧪 CALL:
   // let updated = deleteTask(tasks, "Walk the dog");
@@ -158,4 +158,77 @@ let tasks = [
   // ⬇️ Test it here:
   let updated = deleteTask(tasks, "Walk the dog");
   console.log(updated);
+
+  // ✅ MINI TASK BUILDER — PHASE 4: Filters + Stats
+
+// 🎯 GOAL:
+// 1. Write getCompletedTasks(taskList)
+//    → Returns an array of tasks where done === true
+// 2. Write getRemainingTasks(taskList)
+//    → Returns an array of tasks where done === false
+// 3. Write getStats(taskList)
+//    → Returns an object like { total: 5, completed: 2, remaining: 3 }
+
+// ✅ EXPECTED OUTPUT EXAMPLES:
+// getCompletedTasks(tasks) → 2 items
+// getRemainingTasks(tasks) → 3 items
+// getStats(tasks) → { total: 5, completed: 2, remaining: 3 }
+
+// ⬇️ Write your functions below:
+
+function getCompletedTasks(taskList) {
+  // Your code here
+  let completedArr = []
+
+  for (let i = 0; i < taskList.length; i++) {
+    let taskName = taskList[i]
+    
+    if(taskName.done === true) {
+      completedArr.push(taskName)
+    }
+
+  }
+  return completedArr
+}
+
+function getRemainingTasks(taskList) {
+  // Your code here
+  let remainingArr = []
+  
+
+  for (let i = 0; i < taskList.length; i++) {
+    let taskName = taskList[i]
+    if (taskName.done === false) {
+      remainingArr.push(taskName)
+    }
+  }
+  return remainingArr
+}
+
+function getStats(taskList) {
+  // Your code here
+  let tasksObj = {
+    total: taskList.length,
+    completed: 0,
+    remaining: 0
+  }
+
+  for (let i = 0; i < taskList.length; i++) {
+    let taskName = taskList[i]
+    if(taskName.done === true) {
+      tasksObj.completed++
+    } else {
+      tasksObj.remaining++
+    }
+
+  }
+
+  return tasksObj
+}
+
+// ⬇️ Test your functions here:
+console.log("Completed:", getCompletedTasks(tasks));
+console.log("Remaining:", getRemainingTasks(tasks));
+console.log("Stats:", getStats(tasks));
+
   
